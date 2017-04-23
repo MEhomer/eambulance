@@ -7,6 +7,10 @@ from .models import Diagnosis
 class DiagnosisFilter(filters.Filter):
     """Diagnosis filter."""
 
+    doctor = filters.IntegerField({None: 'doctor'})
+
+    # Deprecated
+    patient = filters.IntegerField({None: 'patient'})
     from_timestamp = filters.IntegerField({None: 'from_timestamp',
                                            'lt': 'from_timestamp__lt',
                                            'lte': 'from_timestamp__lte',
@@ -17,8 +21,6 @@ class DiagnosisFilter(filters.Filter):
                                          'lte': 'to_timestamp__lte',
                                          'gt': 'to_timestamp__gt',
                                          'gte': 'to_timestamp__gte'})
-    patient = filters.IntegerField({None: 'patient'})
-    doctor = filters.IntegerField({None: 'doctor'})
 
     def _get_objects(self, filters):
         """Get all objects."""
