@@ -9,23 +9,20 @@ class Diagnosis(models.Model):
     """Diagnosis model."""
 
     created_timestamp = models.DateTimeField(default=timezone.now)
-    diagnosis = models.TextField()
     doctor = models.BigIntegerField()
-    diagnosis_id = models.TextField()
-
-    # Deprecated
-    patient = models.BigIntegerField(null=True)
-    from_timestamp = models.BigIntegerField(null=True)
-    to_timestamp = models.BigIntegerField(null=True)
+    patient = models.BigIntegerField()
+    from_timestamp = models.BigIntegerField()
+    to_timestamp = models.BigIntegerField()
+    diagnosis = models.TextField()
 
     class Meta(object):
         ordering = ['-created_timestamp']
 
     def __repr__(self):
         """__repr__ override."""
-        return '<Diagnosis ({}, {}, {}, {}, {}, {}, {}, {})>'\
-               .format(self.id, self.created_timestamp, self.diagnosis_id, self.doctor, self.diagnosis,
-                       self.from_timestamp, self.to_timestamp, self.patient)
+        return '<Diagnosis ({}, {}, {}, {}, {}, {}, {})>'\
+               .format(self.id, self.created_timestamp, self.doctor, self.from_timestamp, self.to_timestamp,
+                       self.patient, self.diagnosis)
 
     def __str__(self):
         """__str__ override."""

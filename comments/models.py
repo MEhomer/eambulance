@@ -9,22 +9,19 @@ class Comment(models.Model):
     """Comment model."""
 
     created_timestamp = models.DateTimeField(default=timezone.now)
+    patient = models.BigIntegerField()
+    from_timestamp = models.BigIntegerField()
+    to_timestamp = models.BigIntegerField()
     comment = models.TextField()
-    comment_id = models.TextField()
-
-    # Deprecated
-    patient = models.BigIntegerField(null=True)
-    from_timestamp = models.BigIntegerField(null=True)
-    to_timestamp = models.BigIntegerField(null=True)
 
     class Meta(object):
         ordering = ['-created_timestamp']
 
     def __repr__(self):
         """__repr__ override."""
-        return '<Comment ({}, {}, {}, {}, {}, {}, {})>'\
-               .format(self.id, self.created_timestamp, self.comment_id, self.comment, self.from_timestamp,
-                       self.to_timestamp, self.patient)
+        return '<Comment ({}, {}, {}, {}, {}, {})>'\
+               .format(self.id, self.created_timestamp, self.patient, self.from_timestamp,
+                       self.to_timestamp, self.comment)
 
     def __str__(self):
         """__str__ override."""

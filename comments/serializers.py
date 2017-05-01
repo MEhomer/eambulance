@@ -9,13 +9,10 @@ class CommentSerializer(serializers.Serializer):
 
     id = serializers.IntegerField(read_only=True)
     created_timestamp = serializers.DateTimeField(required=False)
-    comment_id = serializers.CharField(style={'base_template': 'textarea.html'})
+    patient = serializers.IntegerField()
+    from_timestamp = serializers.IntegerField()
+    to_timestamp = serializers.IntegerField()
     comment = serializers.CharField(style={'base_template': 'textarea.html'})
-
-    # Deprecated
-    patient = serializers.IntegerField(required=False)
-    from_timestamp = serializers.IntegerField(required=False)
-    to_timestamp = serializers.IntegerField(required=False)
 
     def create(self, validated_data):
         """Create new comment."""
@@ -24,13 +21,10 @@ class CommentSerializer(serializers.Serializer):
     def update(self, instance, validated_data):
         """Update instance."""
         instance.created_timestamp = validated_data.get('created_timestamp', instance.created_timestamp)
-        instance.comment_id = validated_data.get('comment_id', instance.comment_id)
-        instance.comment = validated_data.get('comment', instance.comment)
-
-        # Deprecated
         instance.patient = validated_data.get('patient', instance.patient)
         instance.from_timestamp = validated_data.get('from_timestamp', instance.from_timestamp)
         instance.to_timestamp = validated_data.get('to_timestamp', instance.to_timestamp)
+        instance.comment = validated_data.get('comment', instance.comment)
         instance.save()
 
         return instance
