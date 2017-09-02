@@ -86,7 +86,7 @@ DATABASES = {
         'NAME': 'eambulance',
         'USER': 'eambulance_user',
         'PASSWORD': 'eambulance_password',
-        'HOST': '127.0.0.1',
+        'HOST': '194.149.138.154',
         'PORT': '3306'
     }
 }
