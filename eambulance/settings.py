@@ -24,9 +24,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '7vq@^a(v#h1%*m09masp^skga^&jw)3((%bg@fsm904jbcovh-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -86,7 +86,7 @@ DATABASES = {
         'NAME': 'eambulance',
         'USER': 'eambulance_user',
         'PASSWORD': 'eambulance_password',
-        'HOST': '194.149.138.154',
+        'HOST': '127.0.0.1',
         'PORT': '3306'
     }
 }
