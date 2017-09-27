@@ -14,9 +14,6 @@ class FilterMetaclass(type):
                   for field_name, obj in list(attrs.items())
                   if isinstance(obj, Field)]
 
-        # If this class is subclassing another Serializer, add that Serializer's
-        # fields.  Note that we loop over the bases in *reverse*. This is necessary
-        # in order to maintain the correct order of fields.
         for base in reversed(bases):
             if hasattr(base, '_declared_fields'):
                 fields = list(base._declared_fields.items()) + fields
